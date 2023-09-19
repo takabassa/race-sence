@@ -24,7 +24,7 @@
         <li class="data-label">【Z】<span id="Z" class="data"></span></li>
         <li class="data-label">【緯度】<span id="lat" class="data"></span></li>
         <li class="data-label">【経度】<span id="lng" class="data"></span></li>
-        <li class="data-label">【精度】<span id="accu" class="data"></span>ｍ</li>
+        <li class="data-label">【精度】<span id="accu" class="data"></span>(ｍ)</li>
         <p></p>
         <a type="button" id="download" class="btn" onclick="exportcsv();">データ・ダウンロード</a>
     </ul>
@@ -277,7 +277,7 @@
                 + d["direction"] + "," + d["X"] + "," + d["Y"] + "," + d["Z"] + "," + d["lat"] + "," 
                 + d["lng"] + "," + d["acc"] + "\n";
             }
-            
+
             // Display the month, day, and year. getMonth() returns a 0-based number.
             let date = new Date();
             let year = date.getFullYear();
@@ -289,6 +289,7 @@
             download.setAttribute('href', 'data:text/csv;charset=UTF-8,' + encodeURIComponent(finalVal));
             download.setAttribute('download', 'sensor' + month + day + '.csv');
         }
+
     </script>
 </body>
 </html>
