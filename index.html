@@ -29,6 +29,8 @@
         <a type="button" id="download" class="btn" onclick="exportcsv();">データ・ダウンロード</a>
     </ul>
 
+    <canvas id="realTimeChart" width="400" height="200"></canvas>
+
     <script type="text/javascript">
         let Inter;
         let t = 100;
@@ -251,6 +253,8 @@
 
         function exportcsv() {
             let finalVal = '';
+            // ヘッダー行を追加
+            finalVal += "日付,時刻,方角,ロール,ピッチ,ヨー,X,Y,Z,緯度,経度,精度\n";
 
             for (let i = 0; i < localStorage.length; i++) {
                 let localstragekey = localStorage.key(i)
@@ -269,23 +273,22 @@
                     d = JSON.parse(localStorage.getItem(localstragekey));
                 }
                 //キーの値をCSV用にリスト化
-                finalVal += localstragekey + "," + d["alpha"] + "," + d["beta"] + "," + d["gamma"] + "," + d["direction"] + "," + d["X"] + "," + d["Y"] + "," + d["Z"] + "," + d["lat"] + "," + d["lng"] + "," + d["acc"] + "\n";
-                //console.log(finalVal);
+                finalVal += localstragekey + "," + d["alpha"] + "," + d["beta"] + "," + d["gamma"] + "," 
+                + d["direction"] + "," + d["X"] + "," + d["Y"] + "," + d["Z"] + "," + d["lat"] + "," 
+                + d["lng"] + "," + d["acc"] + "\n";
             }
+            
             // Display the month, day, and year. getMonth() returns a 0-based number.
             let date = new Date();
             let year = date.getFullYear();
             let month = ("0" + (date.getMonth() + 1)).slice(-2);
             let day = ("0" + date.getDate()).slice(-2);
-            //set csv-data to a-tag on html
+
+            //DL用リンクの設定
             let download = document.getElementById('download');
-            //let aas =  print();
             download.setAttribute('href', 'data:text/csv;charset=UTF-8,' + encodeURIComponent(finalVal));
-            //console.log(finalVal);
             download.setAttribute('download', 'sensor' + month + day + '.csv');
         }
     </script>
-
 </body>
-
 </html>
