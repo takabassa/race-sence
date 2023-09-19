@@ -254,7 +254,7 @@
         function exportcsv() {
             let finalVal = '';
             // ヘッダー行を追加
-            finalVal += "日付,時刻,方角,ロール,ピッチ,ヨー,X,Y,Z,緯度,経度,精度\n";
+            finalVal += "日付,時刻,ロール,ピッチ,ヨー,方角,X,Y,Z,緯度,経度,精度\n";
 
             for (let i = 0; i < localStorage.length; i++) {
                 let localstragekey = localStorage.key(i)
